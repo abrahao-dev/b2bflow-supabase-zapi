@@ -72,8 +72,8 @@ insert into public.contacts (nome, phone_e164) values
 
 #### D) Obtenha as credenciais da Z-API
 Na página da sua instância, copie:
-- **ID da instância** (ex: `3E59322D375AE025F1F3CA4350A8658A`)
-- **Token da instância** (ex: `DBC4373D35407896C7321867`)
+- **ID da instância** (ex: `00000000000000000000000000000000`)
+- **Token da instância** (ex: `00000000000000000000000000000000`)
 
 ### 4) Configure o arquivo .env
 
@@ -92,9 +92,9 @@ SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 
 # Z-API
 ZAPI_BASE_URL=https://api.z-api.io
-ZAPI_INSTANCE_ID=3E59322D375AE025F1F3CA4350A8658A
-ZAPI_TOKEN=DBC4373D35407896C7321867
-ZAPI_CLIENT_TOKEN=F8e627502f92f48abbcb7cf1c96ec83b9S
+ZAPI_INSTANCE_ID=00000000000000000000000000000000
+ZAPI_TOKEN=00000000000000000000000000000000
+ZAPI_CLIENT_TOKEN=00000000000000000000000000000000
 
 # App
 DRY_RUN=true   # true = só testa, false = envia de verdade
