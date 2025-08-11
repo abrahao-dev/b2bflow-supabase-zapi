@@ -1,9 +1,28 @@
 # b2bflow-supabase-zapi
 
-**Autor:** Matheus Abrahão
-**Tipo:** Teste Técnico
-**Data:** 8 Agosto 2025
+**Autor:** Matheus Abrahão  
+**Tipo:** Teste Técnico  
+**Data:** 8 Agosto 2025  
+**Repositório:** https://github.com/abrahao-dev/b2bflow-supabase-zapi
+
 Sistema que envia mensagens personalizadas para contatos do Supabase via Z-API.
+
+## ⚡ Execução Rápida
+
+1. **Configure as variáveis de ambiente** (veja seção Setup)
+2. **Execute:** `python main.py`
+
+## 🔑 Variáveis de Ambiente Necessárias
+
+```bash
+# Supabase
+SUPABASE_URL=https://seu-projeto.supabase.co
+SUPABASE_ANON_KEY=sua-chave-anonima
+
+# Z-API  
+ZAPI_INSTANCE_ID=seu-instance-id
+ZAPI_TOKEN=seu-token
+```
 
 ## 🎯 Objetivo
 
@@ -30,6 +49,9 @@ pip install -r requirements.txt
 No **SQL Editor** do Supabase, execute:
 
 ```sql
+-- (se ainda não tiver) extensão p/ gen_random_uuid
+create extension if not exists pgcrypto;
+
 create table if not exists public.contacts (
   id uuid primary key default gen_random_uuid(),
   nome text not null,
@@ -43,6 +65,15 @@ insert into public.contacts (nome, phone_e164) values
 ('Jose', '+5511988887777'),
 ('Bruno', '+5511977776666'),
 ('Carla', '+5511966665555');
+
+-- habilitar RLS (normalmente já vem habilitado)
+alter table public.contacts enable row level security;
+
+-- policy de leitura pública (para role 'anon')
+create policy "public read contacts"
+on public.contacts
+for select
+using (true);
 ```
 
 #### C) Obtenha as credenciais
@@ -102,7 +133,12 @@ LOG_LEVEL=INFO
 MAX_MESSAGES=3
 ```
 
-## 🧪 Como Usar
+## 🚀 Como Executar
+
+### Comando Principal
+```bash
+python main.py
+```
 
 ### Teste primeiro (DRY_RUN)
 ```bash
