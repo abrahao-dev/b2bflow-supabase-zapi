@@ -1,8 +1,8 @@
 # b2bflow-supabase-zapi
 
-**Autor:** Matheus Abrahão  
-**Tipo:** Teste Técnico  
-**Data:** 8 Agosto 2025  
+**Autor:** Matheus Abrahão
+**Tipo:** Teste Técnico
+**Data:** 8 Agosto 2025
 **Repositório:** https://github.com/abrahao-dev/b2bflow-supabase-zapi
 
 Sistema que envia mensagens personalizadas para contatos do Supabase via Z-API.
@@ -19,7 +19,7 @@ Sistema que envia mensagens personalizadas para contatos do Supabase via Z-API.
 SUPABASE_URL=https://seu-projeto.supabase.co
 SUPABASE_ANON_KEY=sua-chave-anonima
 
-# Z-API  
+# Z-API
 ZAPI_INSTANCE_ID=seu-instance-id
 ZAPI_TOKEN=seu-token
 ```
@@ -27,6 +27,59 @@ ZAPI_TOKEN=seu-token
 ## 🎯 Objetivo
 
 Enviar a mensagem **"Olá {{nome_contato}}, tudo bem com você?"** para contatos cadastrados no Supabase via Z-API.
+
+## 🔄 Fluxo do Sistema
+
+```mermaid
+graph TD
+    subgraph "Usuário/Desenvolvedor"
+        A[▶️ Início: Executa 'python main.py']
+    end
+
+    subgraph "Script Python (Aplicação)"
+        B(⚙️ Carrega configurações do .env)
+        C{Contatos foram encontrados?}
+        D[🔁 Loop: Para cada contato]
+        E{Modo DRY_RUN ativado?}
+        F1[📄 Formata a mensagem]
+        G1(✅ DRY_RUN Loga a mensagem no console)
+        H1(📨 Envia mensagem via Z-API)
+        I1(📝 Loga o resultado do envio)
+        J[🏁 Fim]
+    end
+
+    subgraph "Supabase (Banco de Dados)"
+        S1(☁️ Conecta ao Supabase)
+        S2(🔍 Busca contatos ativos na tabela 'contacts')
+    end
+
+    subgraph "Z-API (Serviço Externo)"
+        Z1(📲 Recebe a requisição do script)
+        Z2(💬 Dispara a mensagem para o WhatsApp do contato)
+    end
+
+    A --> B
+    B --> S1
+    S1 --> S2
+    S2 --> C
+
+    C -- Sim --> D
+    C -- Não --> J
+
+    D -- Processar --> F1
+    F1 --> E
+
+    E -- Sim --> G1
+    G1 -- Próximo --> D
+
+    E -- Não --> H1
+    H1 --> Z1
+    Z1 --> Z2
+    Z2 -- Retorno --> I1
+    I1 -- Próximo --> D
+
+    D -- Fim do loop --> J
+```
 
 ## 🚀 Setup Completo
 
