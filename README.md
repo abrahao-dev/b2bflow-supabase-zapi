@@ -2,8 +2,7 @@
 
 **Autor:** Matheus Abrahão
 **Tipo:** Teste Técnico
-**Data:** Dezembro 2024
-
+**Data:** 8 Agosto 2025
 Sistema que envia mensagens personalizadas para contatos do Supabase via Z-API.
 
 ## 🎯 Objetivo
