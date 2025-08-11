@@ -88,7 +88,7 @@ Exemplo de `.env` completo:
 ```bash
 # Supabase
 SUPABASE_URL=https://abc123.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+SUPABASE_ANON_KEY=00000000000000000000000000000000
 
 # Z-API
 ZAPI_BASE_URL=https://api.z-api.io
